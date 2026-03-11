@@ -226,6 +226,7 @@ p {
     border: none;
     cursor: pointer;
     z-index: 1001;
+    position: relative; /* Keep absolute spans inside the button */
 }
 
 .mobile-toggle span {
@@ -233,13 +234,30 @@ p {
     height: 3px;
     background-color: var(--text-main);
     border-radius: 10px;
-    transition: all 0.3s linear;
+    transition: all 0.3s ease-in-out;
     position: relative;
-    transform-origin: 1px;
+    /* remove transform-origin */
+
 }
 
-.mobile-toggle.active span {
-    background-color: white;
+.mobile-toggle.active span:nth-child(1) {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%) rotate(45deg);
+    background-color: var(--primary);
+}
+
+.mobile-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.mobile-toggle.active span:nth-child(3) {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%) rotate(-45deg);
+    background-color: var(--primary);
 }
 
 /* Hero Section */
@@ -702,6 +720,10 @@ p {
         grid-template-columns: 1fr;
     }
     
+    .booking-form-wrapper {
+        padding: var(--spacing-md); /* Reduce padding on mobile */
+    }
+
     .hero {
         padding-top: 100px;
         text-align: center;
