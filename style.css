@@ -238,6 +238,10 @@ p {
     transform-origin: 1px;
 }
 
+.mobile-toggle.active span {
+    background-color: white;
+}
+
 /* Hero Section */
 .hero {
     padding: calc(var(--spacing-xl) + 60px) 0 var(--spacing-lg);
@@ -538,29 +542,58 @@ p {
 
 /* Responsive Design */
 @media (max-width: 900px) {
+    .header .container {
+        padding-right: var(--spacing-sm);
+    }
     .header .btn {
         display: none;
     }
 
     .mobile-toggle {
         display: flex;
+        margin-left: auto;
     }
 
     .nav-links {
         position: fixed;
         top: 0;
         right: -100%;
-        width: 300px;
-        height: 100vh;
-        background: white;
+        width: max-content;
+        min-width: 200px;
+        max-width: 60vw;
+        min-height: 50vh;
+        background: rgba(32, 31, 32, 0.95);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
         flex-direction: column;
-        padding: 80px 20px 20px;
-        box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+        gap: var(--spacing-sm);
+        padding: 80px 20px 20px 20px;
+        border-bottom-left-radius: var(--radius-lg);
+        box-shadow: -10px 10px 30px rgba(0,0,0,0.2);
         transition: right 0.3s ease-in-out;
     }
 
     .nav-links.active {
         right: 0;
+    }
+
+    .nav-links a {
+        color: white;
+        padding: 12px 16px;
+        background: rgba(255, 255, 255, 0.05); /* Slight transparency on dark */
+        border-radius: var(--radius-sm);
+        text-align: center;
+        box-shadow: var(--shadow-sm);
+        border: 1px solid rgba(255,255,255,0.05);
+        width: 100%;
+        font-weight: 600;
+    }
+
+    .nav-links a:hover {
+        color: var(--primary);
+        background: rgba(255, 255, 255, 0.1);
+        box-shadow: var(--shadow-md);
+        transform: translateY(-2px);
     }
 
     .hero-inner, .booking-card, .footer-inner {
