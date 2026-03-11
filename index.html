@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" type="image/png" href="favicon.png?v=2">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -92,8 +93,8 @@
                     <div class="image-container">
                         <img src="assets/maintenance_service_1772786162878.png" alt="General Maintenance" class="lazy-load" id="img-maintenance">
                     </div>
-                    <h3>General Maintenance</h3>
-                    <p>Routine check-ups and preventative care to extend the life of your equipment and prevent costly breakdowns.</p>
+                    <h3>General Maintenance & AMC</h3>
+                    <p>Routine check-ups, preventative care, and Annual Maintenance Contracts (AMC) to extend the life of your equipment and prevent costly breakdowns.</p>
                 </div>
 
                 <div class="service-card" id="ev-card">
@@ -101,7 +102,7 @@
                         <img src="assets/ev_charger_service_1772786000172.png" alt="EV Charger Services" class="lazy-load">
                     </div>
                     <h3>EV Charger Services</h3>
-                    <p>Specialized care, installation, and optimization for home electric vehicle charging stations.</p>
+                    <p>Expert installation, diagnostics, and board-level repair for Level 2 home and commercial EV charging stations.</p>
                 </div>
 
             </div>
@@ -121,7 +122,7 @@
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
                     </div>
                     <h4>Transparent Pricing</h4>
-                    <p>No hidden fees. You know the exact cost before we start.</p>
+                    <p>No hidden fees. You know the exact cost of the repair and maintenance.</p>
                 </div>
                 <div class="feature-item">
                     <div class="icon-box">
@@ -134,7 +135,7 @@
                     <div class="icon-box">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                     </div>
-                    <h4>90-Day Warranty</h4>
+                    <h4>30-Day Warranty</h4>
                     <p>Every repair comes with a rock-solid warranty for peace of mind.</p>
                 </div>
             </div>
@@ -147,13 +148,28 @@
             <div class="booking-card">
                 <div class="booking-content">
                     <h2>Ready to fix it?</h2>
-                    <p>Select your device and tell us what's wrong. You'll get an instant estimate and can drop it off today.</p>
+                    <p>Provide your details and describe the issue. Our expert team will review your inquiry and get back to you. </p>
                 </div>
                 <div class="booking-form-wrapper">
-                    <form class="booking-form" id="repairForm">
+                    <form class="booking-form" id="repairForm" action="https://formspree.io/f/mwvrobjl" method="POST">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">Full Name</label>
+                                <input type="text" id="name" name="name" placeholder="John Doe" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <!-- Basic 10 digit validation (accepts optional country code like +977 or starts with 9) -->
+                                <input type="tel" id="phone" name="phone" placeholder="+977 98XXXXXXX" pattern="^(\+\d{1,3}\s?)?\d{10}$" title="Please enter a valid 10-digit phone number (e.g., 9800000000 or +977 9800000000)." required>
+                            </div>
+                        </div>
                         <div class="form-group">
-                            <label for="device">Device Type</label>
-                            <select id="device" required>
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" placeholder="john@example.com" pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$" title="Please enter a valid email address." required>
+                        </div>
+                        <div class="form-group">
+                            <label for="device">Service / Device Type</label>
+                            <select id="device" name="device" required>
                                 <option value="" disabled selected>Select service type</option>
                                 <option value="home_electronics">Home Electronics</option>
                                 <option value="industrial">Industrial Engineering</option>
@@ -163,14 +179,65 @@
                         </div>
                         <div class="form-group">
                             <label for="issue">Describe the Issue</label>
-                            <textarea id="issue" rows="3" placeholder="E.g., Screen is cracked, battery won't hold charge..." required></textarea>
+                            <textarea id="issue" name="issue" rows="3" placeholder="E.g., Describe what needs to be fixed..." required></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary btn-block">Get Repair Estimate</button>
+                        <button type="submit" class="btn btn-primary btn-block">Submit Inquiry</button>
                     </form>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Memberships Section (Temporarily Hidden)
+    <section id="memberships" class="memberships bg-light">
+        <div class="container section-inner">
+            <div class="section-header">
+                <h2>Annual Maintenance Plans</h2>
+                <p>Preventative care and priority service for your home and industrial systems. Save money and avoid unexpected breakdowns.</p>
+            </div>
+            
+            <div class="pricing-grid">
+                ... (Home Plan) ...
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Home Plus</h3>
+                        <div class="price">Rs. 9,999<span>/year</span></div>
+                        <p>Perfect for comprehensive home electronics coverage.</p>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> 2 Free preventative visits/yr</li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Priority 24hr response</li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> 15% off all repair parts</li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Free remote diagnostics</li>
+                    </ul>
+                    <div class="pricing-action">
+                        <a href="#book" class="btn btn-secondary btn-block">Subscribe Now</a>
+                    </div>
+                </div>
+
+                ... (Industrial Plan) ...
+                <div class="pricing-card featured">
+                    <div class="popular-badge">Most Popular</div>
+                    <div class="pricing-header">
+                        <h3>Industrial Pro</h3>
+                        <div class="price">Rs. 49,999<span>/year</span></div>
+                        <p>Complete coverage for critical industrial automation.</p>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Monthly preventative maintenance</li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Guaranteed 4hr response time</li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> 25% off all repair parts</li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Dedicated support engineer</li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Annual performance audit</li>
+                    </ul>
+                    <div class="pricing-action">
+                        <a href="#book" class="btn btn-primary btn-block">Subscribe Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    -->
 
     <footer class="footer">
         <div class="container footer-inner">

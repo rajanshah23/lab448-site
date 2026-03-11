@@ -28,31 +28,51 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // 3. Smooth Form Submission Handle (UI only)
+    // 3. Form Submission via Formspree Endpoint
     const form = document.getElementById('repairForm');
     if (form) {
-        form.addEventListener('submit', (e) => {
+        form.addEventListener('submit', async (e) => {
             e.preventDefault();
             const btn = form.querySelector('button[type="submit"]');
             const originalText = btn.textContent;
             
-            // Simulate processing
-            btn.textContent = 'Processing...';
+            // Set Loading state
+            btn.textContent = 'Sending Inquiry...';
             btn.disabled = true;
             
-            setTimeout(() => {
-                btn.textContent = 'Request Sent!';
-                btn.style.backgroundColor = 'var(--success)';
+            const data = new FormData(form);
+
+            try {
+                const response = await fetch(form.action, {
+                    method: form.method,
+                    body: data,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    btn.textContent = 'Request Sent!';
+                    btn.style.backgroundColor = 'var(--success)';
+                    btn.style.color = 'white';
+                    form.reset();
+                } else {
+                    btn.textContent = 'Error Sending';
+                    btn.style.backgroundColor = 'var(--error)';
+                    btn.style.color = 'white';
+                }
+            } catch (error) {
+                btn.textContent = 'Network Error';
+                btn.style.backgroundColor = 'var(--error)';
                 btn.style.color = 'white';
-                
-                form.reset();
-                
+            } finally {
+                // Reset button after 3 seconds
                 setTimeout(() => {
                     btn.textContent = originalText;
                     btn.disabled = false;
                     btn.style = ''; // Reset inline styles
                 }, 3000);
-            }, 1500);
+            }
         });
     }
 });
